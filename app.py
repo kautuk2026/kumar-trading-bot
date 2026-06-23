@@ -11,8 +11,12 @@ CHAT_ID = os.environ.get("917384025")
 def home():
     return "Kumar Trading Bot Running 🚀"
 
-@app.route("/webhook", methods=["POST"])
+@app.route("/webhook", methods=["GET", "POST"])
 def webhook():
+
+    if request.method == "GET":
+        return "Webhook is LIVE ✅"
+
     data = request.get_json(silent=True)
 
     message = "🚀 New Trading Signal"
@@ -21,10 +25,9 @@ def webhook():
 
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
-    payload = {
+    requests.post(url, json={
         "chat_id": CHAT_ID,
         "text": message
-    }
+    })
 
-    requests.post(url, json=payload)
     return {"status": "success"}
