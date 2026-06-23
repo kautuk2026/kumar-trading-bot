@@ -13,7 +13,6 @@ def home():
 
 @app.route("/webhook", methods=["GET", "POST"])
 def webhook():
-
     if request.method == "GET":
         return "Webhook is LIVE ✅"
 
@@ -31,3 +30,9 @@ def webhook():
     })
 
     return {"status": "success"}
+
+
+# 🔥 THIS IS THE MISSING PART (IMPORTANT)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
