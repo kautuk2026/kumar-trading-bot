@@ -13,6 +13,7 @@ def home():
 
 @app.route("/webhook", methods=["GET", "POST"])
 def webhook():
+
     if request.method == "GET":
         return "Webhook is LIVE ✅"
 
@@ -24,15 +25,17 @@ def webhook():
 
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
-    requests.post(url, json={
+    res = requests.post(url, json={
         "chat_id": CHAT_ID,
         "text": message
     })
 
+    print("Telegram STATUS:", res.status_code)
+    print("Telegram RESPONSE:", res.text)
+
     return {"status": "success"}
 
 
-# 🔥 THIS IS THE MISSING PART (IMPORTANT)
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
     app.run(host="0.0.0.0", port=port)
