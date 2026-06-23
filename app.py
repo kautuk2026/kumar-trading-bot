@@ -4,8 +4,8 @@ import os
 
 app = Flask(__name__)
 
-BOT_TOKEN = os.environ.get("8843764106:AAG7glTqU5GTGt66DaNOt5GSgNNf6M0ukDo")
-CHAT_ID = os.environ.get("917384025")
+BOT_TOKEN = "8843764106:AAG7glTqU5GTGt66DaNOt5GSgNNf6M0ukDo"
+CHAT_ID = "917384025"
 
 @app.route("/")
 def home():
@@ -34,7 +34,6 @@ def webhook():
     print("Telegram RESPONSE:", res.text)
 
     return {"status": "success"}
-
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 10000))
