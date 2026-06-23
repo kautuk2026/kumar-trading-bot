@@ -13,8 +13,11 @@ def home():
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
-    data = request.json
-    message = data.get("message", "🚀 New Trading Signal")
+    data = request.get_json(silent=True)
+
+    message = "🚀 New Trading Signal"
+    if data and "message" in data:
+        message = data["message"]
 
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
