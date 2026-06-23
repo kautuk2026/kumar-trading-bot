@@ -4,7 +4,7 @@ import os
 
 app = Flask(__name__)
 
-BOT_TOKEN = os.environ.get("8843764106:AAET5Nlvp-lcWQKHRsCOzgIgQNKqslObl2o")
+BOT_TOKEN = os.environ.get("8843764106:AAG7glTqU5GTGt66DaNOt5GSgNNf6M0ukDo")
 CHAT_ID = os.environ.get("917384025")
 
 @app.route("/")
